@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Heritage Henna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #064E3B; /* dark emerald green */
+      --gold-1: #eacd6d; /* classic gold */
+      --gold-2: #C79B1A; /* warm mustard-gold */
+      --gold-3: #f0d583; /* soft mustard */
+      --ivory: #FFF9F0;
+      --muted: rgba(255,249,240,0.85);
+      --max-width: 1100px;
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,0,0,0.06), transparent), var(--bg);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Container */
+    .wrap{max-width:var(--max-width);margin:48px auto;padding:36px;background:linear-gradient(180deg, rgba(5,40,33,0.06), rgba(255,255,255,0));border-radius:20px;}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:72px;height:72px;border-radius:50%;background:conic-gradient(from 120deg at 50% 50%, var(--gold-1), var(--gold-2));display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,0.35)}
+    .logo svg{filter:drop-shadow(0 3px 6px rgba(0,0,0,0.25));}
+    h1{font-family:'Playfair Display', serif;margin:0;color:var(--gold-1);letter-spacing:0.6px;font-size:28px}
+    p.subtitle{margin:0;color:var(--gold-3);font-size:14px}
+
+    /* Nav */
+    nav{display:flex;gap:12px;align-items:center}
+    .navlink{padding:10px 14px;border-radius:10px;color:var(--ivory);text-decoration:none;font-weight:600}
+    .navlink.active, .navlink:hover{background:linear-gradient(90deg, rgba(212,175,55,0.12), rgba(199,155,26,0.12));color:var(--gold-1)}
+
+    /* Main area */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center}
+    .hero-left{padding:24px}
+    .eyebrow{color:var(--gold-3);font-weight:600;font-size:13px;margin-bottom:8px}
+    .hero-title{font-family:'Playfair Display',serif;color:var(--gold-1);font-size:40px;margin:0 0 12px}
+    .hero-desc{color:var(--muted);font-size:16px;margin-bottom:18px;max-width:60ch}
+    .cta{display:inline-block;padding:12px 18px;border-radius:10px;background:linear-gradient(90deg,var(--gold-2),var(--gold-1));color:var(--bg);font-weight:700;text-decoration:none}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+    .profile{display:flex;gap:14px;align-items:center}
+    .profile img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid rgba(212,175,55,0.12)}
+    .small{font-size:14px;color:var(--muted)}
+
+    /* Tabs/Sections */
+    .sections{margin-top:28px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    .tab-btn{padding:10px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer;color:var(--muted)}
+    .tab-btn.active{background:linear-gradient(90deg, rgba(212,175,55,0.08), rgba(199,155,26,0.08));color:var(--gold-1);border-color:rgba(212,175,55,0.12)}
+
+    section.content{display:none;animation:fade .28s ease both}
+    section.content.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    /* Services list */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .service{padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+    .service h4{margin:0 0 8px;color:var(--gold-2);font-weight:700}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:3px solid rgba(212,175,55,0.06)}
+
+    /* Testimonials */
+    .testi{display:grid;grid-template-columns:1fr;gap:12px}
+    .quote{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(212,175,55,0.04), rgba(212,175,55,0.02));color:var(--ivory)}
+    .quote p{margin:0}
+
+    /* Contact */
+    .contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact-form input, .contact-form textarea, .contact-form select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted)}
+    .contact-form textarea{grid-column:1/-1;min-height:120px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--gold-2),var(--gold-1));color:var(--bg);font-weight:700;text-decoration:none;border:none;cursor:pointer}
+
+    footer{margin-top:32px;padding-top:18px;border-top:1px dashed rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+    small{color:rgba(255,249,240,0.55)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .wrap{padding:18px}
+      .profile img{width:64px;height:64px}
+      .hero-title{font-size:32px}
+      .contact-form{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="logo.png" alt="Heritage Henna Logo" class="logo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid rgba(212,175,55,0.12)">
+        <div>
+          <h1>Heritage Henna</h1>
+          <p class="subtitle">Timeless henna • Natural cones • Custom designs</p>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a class="navlink active" href="#home" data-tab="home">Home</a>
+        <a class="navlink" href="#about" data-tab="about">About</a>
+        <a class="navlink" href="#services" data-tab="services">Services</a>
+        <a class="navlink" href="#gallery" data-tab="gallery">Gallery</a>
+        <a class="navlink" href="#testimony" data-tab="testimony">Testimony</a>
+        <a class="navlink" href="#contact" data-tab="contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-left">
+          <div class="eyebrow">Handmade • Natural • Heirloom</div>
+          <h2 class="hero-title">Henna that carries your story</h2>
+          <p class="hero-desc">From a childhood hobby to a labour of love—Heritage Henna creates bespoke designs rooted in tradition and crafted for today. Bridal, parties, workshops and more—natural, safe, and lovingly detailed.</p>
+          <a class="cta" href="#contact" data-tab="contact">Book a Consultation</a>
+        </div>
+
+        <aside class="card">
+          <div class="profile">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Artist portrait"/>
+            <div>
+              <div style="font-weight:700;color:var(--gold-2)">Anushree</div>
+              <div class="small">Founder & Lead Artist — Henna artist since age 15</div>
+            </div>
+          </div>
+          <hr style="border:none;border-top:1px dashed rgba(255,255,255,0.03);margin:12px 0">
+          <p class="small">Based in Texas. Offers on-site and studio appointments. Uses 100% natural henna cones made in-house.</p>
+        </aside>
+      </div>
+
+      <div class="sections">
+        <div class="tabs" role="tablist" aria-label="Site sections">
+          <button class="tab-btn active" data-target="home">Home</button>
+          <button class="tab-btn" data-target="about">About</button>
+          <button class="tab-btn" data-target="services">Services</button>
+          <button class="tab-btn" data-target="gallery">Gallery</button>
+          <button class="tab-btn" data-target="testimony">Testimony</button>
+          <button class="tab-btn" data-target="contact">Contact</button>
+        </div>
+
+        <section id="home" class="content active">
+          <h3 style="color:var(--gold-1)">Welcome</h3>
+          <p class="small">Heritage Henna offers personalized henna designs inspired by cultural motifs and contemporary trends. I blend precision, care and natural ingredients to leave a beautiful, lasting stain.</p>
+        </section>
+
+        <section id="about" class="content">
+          <h3 style="color:var(--gold-1)">About</h3>
+          <p class="small">I started henna at 15 as a hobby and slowly turned it into Heritage Henna after friends and family loved my work. Today I craft bridal mehndi, event henna, and teach workshops—each design handcrafted with cultural respect and modern sensibilities.</p>
+        </section>
+
+        <section id="services" class="content">
+          <h3 style="color:var(--gold-1)">Services</h3>
+          <div class="services-grid">
+            <div class="service">
+              <h4>Bridal Henna</h4>
+              <p>Full bridal packages—custom motifs, traditional and modern blends, on-site available.</p>
+            </div>
+            <div class="service">
+              <h4>Engagement & Pre‑Wedding</h4>
+              <p>Elegant designs to complement your celebration.</p>
+            </div>
+            <div class="service">
+              <h4>Guest & Event Henna</h4>
+              <p>Quick, beautiful designs for guests at weddings or festivals.</p>
+            </div>
+            <div class="service">
+              <h4>Workshops</h4>
+              <p>Hands-on classes for beginners and advanced artists—learn cone work and motifs.</p>
+            </div>
+            <div class="service">
+              <h4>Minimal & Modern</h4>
+              <p>Delicate, boho-inspired patterns for everyday wear or photoshoots.</p>
+            </div>
+            <div class="service">
+              <h4>Henna Crowns</h4>
+              <p>Supportive, compassionate designs for those experiencing hair loss.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="gallery" class="content">
+          <h3 style="color:var(--gold-1)">Gallery</h3>
+          <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1549289785-9aaf1b6c8b7a?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="henna sample 1">
+            <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="henna sample 2">
+            <img src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="henna sample 3">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="henna sample 4">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="henna sample 5">
+            <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="henna sample 6">
+          </div>
+        </section>
+
+        <section id="testimony" class="content">
+          <h3 style="color:var(--gold-1)">Testimony</h3>
+          <div class="testi">
+            <div class="quote">
+              <p>"Anushree made my wedding day so special — the henna was exquisite and lasted beautifully. I received so many compliments!"</p>
+              <small>— S. Patel, Bride</small>
+            </div>
+            <div class="quote">
+              <p>"Professional, kind, and incredibly talented. Great experience for our festival booth."</p>
+              <small>— M. Rodriguez</small>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="content">
+          <h3 style="color:var(--gold-1)">Contact</h3>
+          <form class="contact-form" onsubmit="event.preventDefault();alert('Thanks — enquiry submitted! (This is a static demo)');">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="text" name="phone" placeholder="Phone Number">
+            <select name="service">
+              <option>Bridal</option>
+              <option>Bridal + Groom</option>
+              <option>Bridal + Guests</option>
+              <option>Bridal + Groom + Guests</option>
+              <option>Guests</option>
+            </select>
+            <input type="date" name="date" placeholder="Event Date">
+            <textarea name="notes" placeholder="Tell us about your event (styles, guest count, location)..."></textarea>
+            <button class="btn" type="submit">Send Enquiry</button>
+          </form>
+        </section>
+
+      </div>
+
+      <footer>
+        <small>© Heritage Henna — Handmade with natural henna • Based in Texas</small>
+        <div>
+          <small style="color:var(--gold-2);font-weight:700">Follow:</small>
+          <small style="margin-left:8px">Instagram • Facebook</small>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.target;
+        document.querySelectorAll('section.content').forEach(s=>s.classList.remove('active'));
+        const el = document.getElementById(target);
+        if(el) el.classList.add('active');
+        // update top nav active state
+        document.querySelectorAll('nav .navlink').forEach(n=>n.classList.remove('active'));
+        const nav = document.querySelector('nav .navlink[data-tab="'+target+'"]');
+        if(nav) nav.classList.add('active');
+      })
+    });
+
+    // nav links mirror tabs
+    document.querySelectorAll('nav .navlink').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const t = a.dataset.tab;
+        const btn = document.querySelector('.tab-btn[data-target="'+t+'"]');
+        if(btn) btn.click();
+        // smooth scroll to top of wrap
+        window.scrollTo({top:0,behavior:'smooth'});
+      })
+    });
+  </script>
+</body>
+</html>
