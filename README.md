@@ -1,4 +1,4 @@
-# Simple Website Using Github Pages
+# Heritage Henna
 Make a simple HTML website and publish it using Github Pages.  
 View example: https://zirafa.github.io/simple-website-template/
 
